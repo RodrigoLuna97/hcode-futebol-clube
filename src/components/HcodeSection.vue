@@ -5,8 +5,8 @@
                <h3>Você está vendo as notícias do: {{ championship }} </h3>
            </div>
        </div>
-       <HcodeSectionBanner />
-       <HcodeSectionNews />
+       <component :is="currentComponent"></component>
+    
 
        <div class="container">
            <div class="row my-club mt-5">
@@ -25,22 +25,22 @@
 
 <script> 
 import HcodeSectionBanner from './HcodeSectionBanner'
-import HcodeSectionNews from './HcodeSectionNews'
 import HcodeInput from './HcodeInput'
 
 export default{
 components: {
     HcodeSectionBanner,
-    HcodeSectionNews,
+    HcodeSectionNews: ()=> import('./HcodeSectionNews.vue'),
     HcodeInput
     },
     data(){
         return{
-            myClub: 'Hcode Treinamentos'
+            myClub: 'Hcode Treinamentos',
         }
     },
     props: {
-        championship: String
+        championship: String,
+        currentComponent: String
     }
 }
 </script>
